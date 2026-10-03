@@ -45,6 +45,43 @@ public class CircularQueue {
         return value;
     }
 
+    // Get front element
+    public int peek() {
+
+        if (actualItems == 0) {
+            System.out.println("Queue is empty");
+            return -1;
+        }
+
+        return queueArray[front];
+    }
+
+    public boolean isEmpty() {
+        return actualItems == 0;
+    }
+
+    public boolean isFull() {
+        return actualItems == size;
+    }
+
+    public int size() {
+        return actualItems;
+    }
+
+    public void printQueue() {
+
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return;
+        }
+
+        for (int i = 0; i < actualItems; i++) {
+            int index = (front + i) % size;
+            System.out.print(queueArray[index] + " ");
+        }
+
+        System.out.println();
+    }
 
     public static void main(String[] args) {
 
@@ -56,18 +93,20 @@ public class CircularQueue {
         queue.insert(40);
         queue.insert(50);
 
-
+        queue.printQueue();
 
         // Remove two
         System.out.println("Removed: " + queue.remove());
         System.out.println("Removed: " + queue.remove());
 
-
+        queue.printQueue();
 
         // These reuse the empty positions
         queue.insert(60);
         queue.insert(70);
 
+        queue.printQueue();
 
+        System.out.println("Front: " + queue.peek());
     }
 }
